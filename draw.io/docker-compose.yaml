@@ -1,0 +1,28 @@
+version: "3"
+services:
+  drawio:
+    image: feer1999/drawio:0.4
+    ports:
+      - 8080:8080
+      - 8443:8443
+  init:
+    image: feer1999/drawio:0.4
+    profiles: ["init"]
+    volumes:
+      - ./:/src
+    working_dir: /src
+    command: npm install
+  deploy:
+    image: feer1999/drawio:0.4
+    profiles: ["deploy"]
+    environment:
+      - GIT_USER=$GIT_USER
+      - GIT_PASS=$GIT_PASS
+      - GIT_NAME=$GIT_NAME
+      - GIT_MAIL=$GIT_MAIL
+      - USE_SSH=$USE_SSH
+      - CURRENT_BRANCH=$CURRENT_BRANCH
+    volumes:
+      - ./:/drawio
+    working_dir: /drawio
+    command: bash -c "git config --global user.email $GIT_MAIL && git config --global user.name $GIT_NAME && yarn deploy"
