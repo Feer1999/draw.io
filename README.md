@@ -12,3 +12,11 @@ Programação Web 2
 <h1>Imagem Contruida e enviada no DockerHub</h1>
 
 [feer1999/drawio](https://hub.docker.com/r/feer1999/drawio)
+
+<h1>Comandos</h1>
+
+<ul>
+  <li>docker compose up init -d</li>
+  <li>docker compose up -d</li>
+</ul>
+
