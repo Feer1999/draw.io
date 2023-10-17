@@ -9,8 +9,8 @@ services:
     image: feer1999/drawio:0.4
     profiles: ["init"]
     volumes:
-      - ./:/src
-    working_dir: /src
+      - ./:/draw.io
+    working_dir: /draw.io
     command: npm install
   deploy:
     image: feer1999/drawio:0.4
@@ -23,6 +23,6 @@ services:
       - USE_SSH=$USE_SSH
       - CURRENT_BRANCH=$CURRENT_BRANCH
     volumes:
-      - ./:/drawio
-    working_dir: /drawio
+      - ./:/draw.io
+    working_dir: /draw.io
     command: bash -c "git config --global user.email $GIT_MAIL && git config --global user.name $GIT_NAME && yarn deploy"
